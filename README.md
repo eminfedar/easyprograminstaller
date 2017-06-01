@@ -16,4 +16,5 @@ You must copy those 2 file to the those locations:
 org.fedar.easyprograminstaller.policy -> /usr/share/polkit-1/actions
 org.fedar.easyprograminstaller.rules  -> /usr/share/polkit-1/rules.d
 ```
-And do not forget to copy the program file to `/usr/bin` folder. It will not work for some installs when you are debugging.
+And do not forget to copy the program file to `/usr/bin` folder.
+Otherwise it will require sudo password.
