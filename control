@@ -1,0 +1,7 @@
+Package: easyprograminstaller
+Version: 1.0-1
+Maintainer: Emin Fedar <eminfedar@gmail.com>
+Section: admin
+Architecture: amd64
+Priority: optional
+Description: This program makes easy to install your favorite programs just by one click
