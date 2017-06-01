@@ -22,10 +22,11 @@ private slots:
     void processOutput();
     void on_btn_install_clicked();
 
+    void on_sync_clicked();
+
 private:
     Ui::MainWindow *ui;
     void addAppsToList();
-    void configureAppList();
     void addSignalsSlots();
     void checkIfProgramsExists();
     void installQueue();

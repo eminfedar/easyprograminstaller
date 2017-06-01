@@ -20,3 +20,8 @@ HEADERS  += mainwindow.h
 FORMS    += mainwindow.ui
 
 CONFIG  += c++11
+
+RESOURCES += \
+    qtresource.qrc
+
+LIBS += -L/usr/local/lib -lyaml-cpp
