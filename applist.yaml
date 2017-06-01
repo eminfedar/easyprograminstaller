@@ -1,0 +1,176 @@
+---
+
+Developers:
+  Android Studio:
+    - sudo apt install unzip libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386 -y
+    - wget -O /home/$USER/.config/easyprograminstaller/downloaded/androidstudio.zip "https://dl.google.com/dl/android/studio/ide-zips/2.3.2.0/android-studio-ide-162.3934792-linux.zip" -q --no-check-certificate --show-progress --progress=dot
+    - cd /home/$USER/.config/easyprograminstaller/downloaded
+    - unzip androidstudio.zip -d /usr/local
+    - cd /usr/local/android-studio/bin
+    - echo '--CHECKDOWNLOADFOLDER--'
+    - ./studio.sh
+    - "[ -d /usr/local/android-studio ] && echo 'exists'"
+  Arduino IDE:
+    - "sudo apt install arduino arduino-core -y"
+    - dpkg -l | grep -o 'ii  arduino'
+  Atom Text Editor:
+    - wget -O /home/$USER/.config/easyprograminstaller/downloaded/atom.deb "https://atom.io/download/deb" -q --no-check-certificate --show-progress --progress=dot
+    - sudo dpkg -i /home/$USER/.config/easyprograminstaller/downloaded/atom.deb
+    - echo '--CHECKDOWNLOADFOLDER--'
+    - dpkg -l | grep -o 'ii  atom'
+  Eclipse Installer:
+    - wget -O /home/$USER/.config/easyprograminstaller/downloaded/eclipse.tar.gz "http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse/oomph/epp/neon/R3/eclipse-inst-linux64.tar.gz" -q --no-check-certificate --show-progress --progress=dot
+    - cd /home/$USER/.config/easyprograminstaller/downloaded
+    - tar xf eclipse.tar.gz
+    - cd eclipse-installer
+    - echo '--CHECKDOWNLOADFOLDER--'
+    - (./eclipse-inst &)
+    - "[ -d /home/$USER/.config/easyprograminstaller/downloaded/eclipse-installer ] && echo 'exists'"
+  Java Development Kit:
+    - sudo apt install default-jdk -y
+    - dpkg -l | grep -o 'ii  default-jdk'
+  Java Runtime Environment:
+    - sudo apt install default-jre -y
+    - dpkg -l | grep -o 'ii  default-jre'
+  Mono Develop:
+    - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+    - echo "deb http://download.mono-project.com/repo/ubuntu xenial main" | sudo tee /etc/apt/sources.list.d/mono-official.list
+    - sudo apt update
+    - sudo apt install mono-devel -y
+    - dpkg -l | grep -o 'ii  mono-devel'
+  NetBeans IDE:
+    - sudo apt install netbeans -y
+    - dpkg -l | grep -o 'ii  netbeans'
+  OpenJDK 8:
+    - sudo apt install openjdk-8-jdk -y
+    - dpkg -l | grep -o 'ii  openjdk-8-jdk'
+  OpenJRE 8:
+    - sudo apt install openjdk-8-jre -y
+    - dpkg -l | grep -o 'ii  openjdk-8-jre'
+  PyCharm:
+    - sudo add-apt-repository ppa:mystic-mirage/pycharm
+    - sudo apt update
+    - sudo apt install pycharm-community -y
+    - dpkg -l | grep -o 'ii  pycharm-community'
+  Qt 5:
+    - sudo apt install qt5-default -y
+    - dpkg -l | grep -o 'ii  qt5-default'
+  Qt Creator:
+    - sudo apt install qtcreator -y
+    - dpkg -l | grep -o 'ii  qt342creator'
+  Sublime Text:
+    - wget -O /home/$USER/.config/easyprograminstaller/downloaded/sublime.deb "https://download.sublimetext.com/sublime-text_build-3126_amd64.deb" -q --no-check-certificate --show-progress --progress=dot
+    - sudo dpkg -i /home/$USER/.config/easyprograminstaller/downloaded/sublime.deb
+    - echo '--CHECKDOWNLOADFOLDER--'
+    - dpkg -l | grep -o 'ii  vlc'
+  Vim:
+    - sudo apt install vim -y
+    - dpkg -l | grep -o 'ii  vim'
+  Visual Studio Code:
+    - wget -O /home/$USER/.config/easyprograminstaller/downloaded/vscode.deb "https://az764295.vo.msecnd.net/stable/19222cdc84ce72202478ba1cec5cb557b71163de/code_1.12.2-1494422229_amd64.deb" -q --no-check-certificate --show-progress --progress=dot
+    - sudo dpkg -i /home/$USER/.config/easyprograminstaller/downloaded/vscode.deb
+    - echo '--CHECKDOWNLOADFOLDER--'
+    - dpkg -l | grep -o 'ii  code'
+General:
+  GIMP Image Editor:
+    - sudo apt install gimp -y
+    - dpkg -l | grep -o 'ii  gimp'
+  Google Chrome:
+    - wget -O /home/$USER/.config/easyprograminstaller/downloaded/googlechrome.deb "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" -q --no-check-certificate --show-progress --progress=dot
+    - sudo dpkg -i /home/$USER/.config/easyprograminstaller/downloaded/googlechrome.deb
+    - echo '--CHECKDOWNLOADFOLDER--'
+    - dpkg -l | grep -o 'ii  google-chrome'
+  Mozilla Firefox:
+    - sudo apt install firefox -y
+    - dpkg -l | grep -o 'ii  firefox'
+  Opera:
+    - sudo sh -c 'echo "deb http://deb.opera.com/opera/ stable non-free" >> /etc/apt/sources.list.d/opera.list'
+    - wget http://deb.opera.com/archive.key -q -O - | sudo apt-key add -
+    - sudo apt update
+    - sudo apt install opera -y
+    - dpkg -l | grep -o 'ii  opera'
+  Pitivi Video Editor:
+    - sudo apt install pitivi -y
+    - dpkg -l | grep -o 'ii  pitivi'
+  Skype:
+    - sudo apt install skype -y
+    - dpkg -l | grep -o 'ii  skype'
+  Spotify:
+    - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886
+    - echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
+    - sudo apt update
+    - sudo apt install spotify-client -y
+    - dpkg -l | grep -o 'ii  spotify'
+  TeamViewer:
+    - wget -O /home/$USER/.config/easyprograminstaller/downloaded/teamviewer.deb "https://download.teamviewer.com/download/teamviewer_i386.deb" -q --no-check-certificate --show-progress --progress=dot
+    - sudo dpkg -i /home/$USER/.config/easyprograminstaller/downloaded/teamviewer.deb
+    - echo '--CHECKDOWNLOADFOLDER--'
+    - dpkg -l | grep -o 'ii  teamviewer'
+  Telegram Desktop:
+    - wget -O /home/$USER/.config/easyprograminstaller/downloaded/telegram.tar.xz "https://telegram.org/dl/desktop/linux" -q --no-check-certificate --show-progress --progress=dot
+    - cd /home/$USER/.config/easyprograminstaller/downloaded/
+    - tar xf telegram.tar.xz
+    - cd Telegram
+    - sudo cp Telegram /usr/bin/telegram
+    - telegram
+    - echo '--CHECKDOWNLOADFOLDER--'
+    - which 'telegram'
+  VirtualBox:
+    - sudo apt install virtualbox -y
+    - dpkg -l | grep -o 'ii  virtualbox'
+  Vivaldi:
+    - wget -O /home/$USER/.config/easyprograminstaller/downloaded/vivaldi.deb "https://downloads.vivaldi.com/stable/vivaldi-stable_1.9.818.50-1_amd64.deb" -q --no-check-certificate --show-progress --progress=dot
+    - sudo dpkg -i /home/$USER/.config/easyprograminstaller/downloaded/vivaldi.deb
+    - echo '--CHECKDOWNLOADFOLDER--'
+    - dpkg -l | grep -o 'ii  vivaldi'
+  VLC Media Player:
+    - sudo apt install vlc -y
+    - dpkg -l | grep -o 'ii  vlc'
+Tools:
+  Cairo Dock:
+    - sudo apt install cairo-dock -y
+    - dpkg -l | grep -o 'ii  cairo-dock'
+  Conky:
+    - sudo apt install conky-all -y
+    - dpkg -l | grep -o 'ii  conky-all'
+  dconf Editor:
+    - sudo apt install dconf-editor -y
+    - dpkg -l | grep -o 'ii  dconf-editor'
+  Docky:
+    - sudo apt install docky -y
+    - dpkg -l | grep -o 'ii  docky'
+  FileZilla:
+    - sudo apt install filezilla -y
+    - dpkg -l | grep -o 'ii  filezilla'
+  Gnome Tweak Tool:
+    - sudo apt install gnome-tweak-tool -y
+    - dpkg -l | grep -o 'ii  gnome-tweak-tool'
+  Plank:
+    - sudo add-apt-repository ppa:ricotz/docky
+    - sudo apt update
+    - sudo apt install plank -y
+    - dpkg -l | grep -o 'ii  plank'
+  RecordMyDesktop:
+    - sudo apt install recordmydesktop -y
+    - dpkg -l | grep -o 'ii  recordmydesktop'
+  Unity Tweak Tool:
+    - sudo apt install unity-tweak-tool -y
+    - dpkg -l | grep -o 'ii  unity-tweak-tool'
+  Wine:
+    - sudo dpkg --add-architecture i386
+    - wget -nc https://dl.winehq.org/wine-builds/Release.key
+    - sudo apt-key add Release.key
+    - sudo apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/
+    - deb https://dl.winehq.org/wine-builds/debian/ jessie main
+    - sudo apt update
+    - sudo apt install --install-recommends winehq-devel -y
+    - dpkg -l | grep -o 'ii  winehq-devel'
+System Management:
+  Boot Repair:
+    - sudo add-apt-repository ppa:yannubuntu/boot-repair
+    - sudo apt update
+    - sudo apt install boot-repair -y
+    - dpkg -l | grep -o 'ii  boot-repair'
+  GParted:
+    - sudo apt install gparted -y
+    - dpkg -l | grep -o 'ii  gparted'
