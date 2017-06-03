@@ -10,11 +10,4 @@ It has been written in C++ & Qt-5, so you can compile the program yourself if yo
 * Then run it from terminal : `easyprograminstaller`
 
 ### You can compile from source code:
-It needs some policy file to run without asking sudo password.
-You must copy those 2 file to the those locations:
-```
-org.fedar.easyprograminstaller.policy -> /usr/share/polkit-1/actions
-org.fedar.easyprograminstaller.rules  -> /usr/share/polkit-1/rules.d
-```
-And do not forget to copy the program file to `/usr/bin` folder.
-Otherwise it will require sudo password.
+Just open .pro folder with QtCreator
