@@ -117,10 +117,9 @@ General:
     - wget -O telegram.tar.xz "https://telegram.org/dl/desktop/linux" -q --no-check-certificate --show-progress --progress=dot
     - tar xf telegram.tar.xz
     - cd Telegram
-    - sudo cp Telegram /usr/bin/telegram
-    - ./telegram
+    - ./Telegram
     - echo '--CHECKDOWNLOADFOLDER--'
-    - which 'telegram'
+    - "[ -d /home/$USER/.config/easyprograminstaller/Telegram ] && echo '+'"
   VirtualBox:
     - sudo apt install virtualbox -y
     - which virtualbox
