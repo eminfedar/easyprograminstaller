@@ -118,7 +118,7 @@ General:
     - tar xf telegram.tar.xz
     - cd Telegram
     - sudo cp Telegram /usr/bin/telegram
-    - telegram
+    - ./telegram
     - echo '--CHECKDOWNLOADFOLDER--'
     - which 'telegram'
   VirtualBox:
