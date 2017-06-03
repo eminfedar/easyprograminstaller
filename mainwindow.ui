@@ -13,13 +13,36 @@
   <property name="windowTitle">
    <string>Easy Program Installer</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>:/img/epiicon.png</normaloff>:/img/epiicon.png</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>2</number>
+    </property>
+    <property name="topMargin">
+     <number>3</number>
+    </property>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>44</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
       <item>
        <widget class="QLabel" name="header">
         <property name="sizePolicy">
@@ -70,7 +93,7 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="qtresource.qrc">
+         <iconset>
           <normaloff>:/img/sync.png</normaloff>:/img/sync.png</iconset>
         </property>
        </widget>
@@ -90,7 +113,8 @@
         <property name="styleSheet">
          <string notr="true">background-color: rgb(52, 52, 52);
 color: rgb(255, 255, 255);
-font-weight:bold;</string>
+font-weight:bold;
+padding:3px;</string>
         </property>
         <property name="text">
          <string>Developers</string>
@@ -108,7 +132,8 @@ font-weight:bold;</string>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(52, 52, 52);
 color: rgb(255, 255, 255);
-font-weight:bold;</string>
+font-weight:bold;
+padding:3px;</string>
         </property>
         <property name="text">
          <string>General</string>
@@ -123,29 +148,11 @@ font-weight:bold;</string>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="sizeIncrement">
-         <size>
-          <width>0</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="baseSize">
-         <size>
-          <width>0</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(52, 52, 52);
 color: rgb(255, 255, 255);
 font-weight:bold;
-</string>
+padding:3px;</string>
         </property>
         <property name="text">
          <string>Tools</string>
@@ -163,7 +170,8 @@ font-weight:bold;
         <property name="styleSheet">
          <string notr="true">background-color: rgb(52, 52, 52);
 color: rgb(255, 255, 255);
-font-weight:bold;</string>
+font-weight:bold;
+padding:3px;</string>
         </property>
         <property name="text">
          <string>System Management</string>
@@ -250,8 +258,6 @@ font-weight:bold;</string>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="qtresource.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

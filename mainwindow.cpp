@@ -5,14 +5,13 @@
 #include <QMessageBox>
 #include "yaml-cpp/yaml.h"
 #include <string>
-
+#include <QDateTime>
 
 void MainWindow::addAppsToList(){
 
-    ui->list_developers->clear();
-    ui->list_general->clear();
-    ui->list_tools->clear();
-    ui->list_system->clear();
+    for (int i = 0; i < listArr->count(); ++i)
+        listArr->at(i)->clear();
+
 
     YAML::Node applist = YAML::LoadFile("/home/eminfedar/.config/easyprograminstaller/applist.yaml");
 
@@ -43,29 +42,15 @@ void MainWindow::addAppsToList(){
         }
     }
 
-    // SETTING ITEMS FLAGS & SORTING
-    ui->list_developers->sortItems();
-    for (int i = 0; i < ui->list_developers->count(); ++i) {
-        ui->list_developers->item(i)->setFlags(Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
-        ui->list_developers->item(i)->setCheckState(Qt::Unchecked);
-    }
 
-    ui->list_general->sortItems();
-    for (int i = 0; i < ui->list_general->count(); ++i) {
-        ui->list_general->item(i)->setFlags(Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
-        ui->list_general->item(i)->setCheckState(Qt::Unchecked);
-    }
+    // SETTING ITEM FLAGS & SORTING
+    for (int a = 0; a < listArr->count(); ++a) {
+        listArr->at(a)->sortItems();
 
-    ui->list_tools->sortItems();
-    for (int i = 0; i < ui->list_tools->count(); ++i) {
-        ui->list_tools->item(i)->setFlags(Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
-        ui->list_tools->item(i)->setCheckState(Qt::Unchecked);
-    }
-
-    ui->list_system->sortItems();
-    for (int i = 0; i < ui->list_system->count(); ++i) {
-        ui->list_system->item(i)->setFlags(Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
-        ui->list_system->item(i)->setCheckState(Qt::Unchecked);
+        for (int i = 0; i < listArr->at(a)->count(); ++i) {
+            listArr->at(a)->item(i)->setFlags(Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
+            listArr->at(a)->item(i)->setCheckState(Qt::Unchecked);
+        }
     }
 
 }
@@ -86,10 +71,11 @@ void MainWindow::checkIfProgramsExists(){
 
             if(AppList.contains(appName)){
 
-                terminal->start("/bin/sh", QStringList() << "-c" << AppList.value(appName).at(AppList.value(appName).count()-1));
+                //terminal->start("/bin/sh", QStringList() << "-c" << AppList.value(appName).at(AppList.value(appName).count()-1));
+                terminal->start((QString)("/bin/bash -c \"" + AppList.value(appName).at(AppList.value(appName).count()-1)) + "\"");
                 terminal->waitForFinished();
 
-
+                //qDebug() << appName << " : " << terminalOutput << " - " << terminalOutput.length();
                 if(terminalOutput.length() > 0 && terminalOutput != "--- |FINISHED| ---\n"){
                     list->item(i)->setForeground(QColor(0,150,0));
                     list->item(i)->setFlags(!Qt::ItemIsEnabled);
@@ -111,8 +97,13 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    //qint64 stamp = QDateTime::currentMSecsSinceEpoch();
+
     ui->txt_output->setText("Preparing the Program...");
 
+    username = qgetenv("USER");
+    if (username.isEmpty())
+        username = qgetenv("USERNAME");
 
     listArr = new QVector<QListWidget*>();
     listArr->append( (QListWidget*)ui->list_developers );
@@ -131,13 +122,41 @@ MainWindow::MainWindow(QWidget *parent) :
     addSignalsSlots();
     checkIfProgramsExists();
 
+
     ui->txt_output->setText("Ready.");
+
+    //qint64 newstamp = QDateTime::currentMSecsSinceEpoch();
+    //qDebug() << "Ms difference : " << (newstamp - stamp);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+// APP INSTALLATION
+void MainWindow::installQueue(){
+    if(appsWillInstall->length() == 0) return;
+
+    QStringList appCommand = AppList.value(appsWillInstall->first());
+    appCommand.removeLast();// Because the last one is for checking if the app installed
+    appCommand.push_back("echo '--- |FINISHED| ---'");
+    for (int i = 0; i < appCommand.count(); ++i) {
+        QString cmd = appCommand.at(i);
+        //qDebug() << appCommand.at(i);
+        cmd.replace("$USER", username);
+        appCommand[i] = cmd;
+        //qDebug() << appCommand.at(i);
+    }
+
+    ui->btn_install->setEnabled(false);
+
+    terminal->start((QString)("pkexec /bin/sh -c \"" + appCommand.join(" && ") + "\""));
+
+    if(appsWillInstall->length() > 0)
+        appsWillInstall->removeFirst();
+}
+
 
 void MainWindow::processOutput(){
     terminalOutput = terminal->readAllStandardOutput();
@@ -151,37 +170,33 @@ void MainWindow::processOutput(){
         ui->txt_outputerr->setText("Downloading... " + errOutput.split("%")[0] + "%");
     }
 
+    // To Show info about installing
+    QString preparedText = terminalOutput.left(70);
+    preparedText.replace("\n","");
+    ui->txt_output->setText(preparedText);
+    //qDebug() << terminalOutput;
     //qDebug() << terminalOutputErr;
-    ui->txt_output->setText(terminalOutput);
 
-    // If commands finished.
-    if(terminalOutput == "--- |FINISHED| ---\n"){
+    const QString terminalOutputConst = terminalOutput;
+
+    // If all commands finished.
+    if(terminalOutputConst.indexOf("--- |FINISHED| ---") > -1){
         terminal->close();
-        ui->txt_outputerr->setText("");
+        ui->txt_outputerr->setText("Ready");
         checkIfProgramsExists();
         installQueue();
         ui->btn_install->setEnabled(true);
-    }else if(terminalOutput == "--CHECKDOWNLOADFOLDER--\n"){
-        QString username = qgetenv("USER");
-        QMessageBox::information(this, "Info", "Download Complete.\n\nYou can access the downloaded files from:\n/home/" + username + "/.config/easyprograminstaller/downloaded");
-    }else if(terminalOutput == "--EXTRACTEDTOOPT--\n"){
+        ui->centralWidget->repaint();
+    }
+    // Check Download Folder
+    if(terminalOutputConst.indexOf("--CHECKDOWNLOADFOLDER--") > -1){
+        QMessageBox::information(this, "Info", "Download Complete.\n\nYou can access the downloaded files from:\n~/.config/easyprograminstaller/downloaded");
+    }
+    // Extracted to /opt
+    if(terminalOutputConst.indexOf("--EXTRACTEDTOOPT--") > -1){
         QMessageBox::information(this, "Info", "Files extracted to the /opt/ folder.\n\nYou can access from there.");
     }
-}
 
-void MainWindow::installQueue(){
-    if(appsWillInstall->length() == 0) return;
-
-    QStringList appCommand = AppList.value(appsWillInstall->first());
-    appCommand.removeLast();// Because the last one is for checking if the app installed
-    appCommand.push_back("echo '--- |FINISHED| ---'");
-
-    ui->btn_install->setEnabled(false);
-
-    terminal->start((QString)("/bin/sh -c \"" + appCommand.join(" && ") + "\""));
-
-    if(appsWillInstall->length() > 0)
-        appsWillInstall->removeFirst();
 }
 
 
@@ -220,8 +235,9 @@ void MainWindow::on_sync_clicked()
 
     terminal->start((QString)("/bin/sh -c \"mv ~/.config/easyprograminstaller/applist.yaml ~/.config/easyprograminstaller/applist.yaml.old; wget -O /home/eminfedar/.config/easyprograminstaller/applist.yaml 'https://github.com/eminfedar/easyprograminstaller/raw/master/applist.yaml' -q --no-check-certificate\""));
     terminal->waitForFinished();
+    terminal->close();
 
     addAppsToList();
     checkIfProgramsExists();
-    ui->txt_output->setText("App List UPDATED (~/.config/easyprograminstaller/applist.yaml)\nOld list secured in: 'applist.yaml.old'");
+    QMessageBox::information(this, "Info", "App List UPDATED (~/.config/easyprograminstaller/applist.yaml)\nOld list secured in: 'applist.yaml.old'");
 }
