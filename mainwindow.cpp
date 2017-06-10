@@ -13,7 +13,7 @@ void MainWindow::addAppsToList(){
         listArr->at(i)->clear();
 
 
-    YAML::Node applist = YAML::LoadFile("/home/eminfedar/.config/easyprograminstaller/applist.yaml");
+    YAML::Node applist = YAML::LoadFile("/home/" + username + "/.config/easyprograminstaller/applist.yaml");
 
     for(YAML::const_iterator categories = applist.begin(); categories != applist.end(); ++categories){
         std::string category_name = categories->first.as<std::string>();
@@ -233,7 +233,7 @@ void MainWindow::on_sync_clicked()
     }
     ui->btn_install->repaint(); // This is just for refreshing the last list. Because it is not refreshing the last one. So we make this last one.
 
-    terminal->start((QString)("/bin/sh -c \"mv ~/.config/easyprograminstaller/applist.yaml ~/.config/easyprograminstaller/applist.yaml.old; wget -O /home/eminfedar/.config/easyprograminstaller/applist.yaml 'https://github.com/eminfedar/easyprograminstaller/raw/master/applist.yaml' -q --no-check-certificate\""));
+    terminal->start((QString)("/bin/sh -c \"mv ~/.config/easyprograminstaller/applist.yaml ~/.config/easyprograminstaller/applist.yaml.old; wget -O /home/" + username + "/.config/easyprograminstaller/applist.yaml 'https://github.com/eminfedar/easyprograminstaller/raw/master/applist.yaml' -q --no-check-certificate\""));
     terminal->waitForFinished();
     terminal->close();
 
