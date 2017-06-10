@@ -24,4 +24,4 @@ CONFIG  += c++11
 RESOURCES += \
     qtresource.qrc
 
-LIBS += -L/usr/local/lib -lyaml-cpp
+LIBS += -lyaml-cpp

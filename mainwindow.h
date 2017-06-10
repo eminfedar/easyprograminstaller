@@ -37,5 +37,6 @@ private:
     QByteArray terminalOutputErr;
     QVector<QListWidget*> *listArr;
     QStringList *appsWillInstall;
+    QString username;
 };
 #endif // MAINWINDOW_H
