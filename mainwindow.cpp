@@ -12,8 +12,8 @@ void MainWindow::addAppsToList(){
     for (int i = 0; i < listArr->count(); ++i)
         listArr->at(i)->clear();
 
-
-    YAML::Node applist = YAML::LoadFile("/home/" + username + "/.config/easyprograminstaller/applist.yaml");
+    const QString path = "/home/" + username + "/.config/easyprograminstaller/applist.yaml";
+    YAML::Node applist = YAML::LoadFile(path.toStdString());
 
     for(YAML::const_iterator categories = applist.begin(); categories != applist.end(); ++categories){
         std::string category_name = categories->first.as<std::string>();
@@ -78,7 +78,7 @@ void MainWindow::checkIfProgramsExists(){
                 //qDebug() << appName << " : " << terminalOutput << " - " << terminalOutput.length();
                 if(terminalOutput.length() > 0 && terminalOutput != "--- |FINISHED| ---\n"){
                     list->item(i)->setForeground(QColor(0,150,0));
-                    list->item(i)->setFlags(!Qt::ItemIsEnabled);
+                    list->item(i)->setFlags(Qt::ItemIsEnabled);
                     list->item(i)->setCheckState(Qt::Checked);
                 }
 
