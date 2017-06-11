@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/img">
-        <file>../Belgeler/QtProjects/EasyProgramInstaller/save.png</file>
-        <file>../Belgeler/QtProjects/EasyProgramInstaller/sync.png</file>
-        <file>../Belgeler/QtProjects/EasyProgramInstaller/epiicon.png</file>
+        <file>../save.png</file>
+        <file>../sync.png</file>
+        <file>../epiicon.png</file>
     </qresource>
 </RCC>
