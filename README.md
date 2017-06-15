@@ -10,9 +10,8 @@ It has been written in C++ & Qt-5, so you can compile the program yourself if yo
 * Then run it from terminal : `easyprograminstaller`
 
 ### You can compile from source code:
-Just open .pro folder with QtCreator
 
-But it you have to compile from source code [yaml-cpp](https://github.com/jbeder/yaml-cpp) library first.
+1. Compile [yaml-cpp](https://github.com/jbeder/yaml-cpp) first:
 ```
 git clone https://github.com/jbeder/yaml-cpp.git
 cd yaml-cpp
@@ -23,4 +22,6 @@ cmake ..
 make
 sudo make install
 ```
+2. Open ".pro" file with QT-Creator
+
 Done.
