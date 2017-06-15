@@ -18,7 +18,9 @@ git clone https://github.com/jbeder/yaml-cpp.git
 cd yaml-cpp
 mkdir build
 cd build
-make yaml-cpp_directory_here
-cmake
+cmake ..
+
+make
+make install
 ```
 Done.
