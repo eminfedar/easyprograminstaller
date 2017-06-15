@@ -21,6 +21,6 @@ cd build
 cmake ..
 
 make
-make install
+sudo make install
 ```
 Done.
