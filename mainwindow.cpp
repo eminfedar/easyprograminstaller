@@ -88,7 +88,7 @@ void MainWindow::checkIfProgramsExists(){
                 //qDebug() << appName << " : " << terminalOutput << " - " << terminalOutput.length();
                 if(terminalOutput.length() > 0 && terminalOutput != "--- |FINISHED| ---\n"){
                     list->item(i)->setForeground(QColor(0,150,0));
-                    list->item(i)->setFlags(Qt::ItemIsEnabled);
+                    list->item(i)->setFlags(!Qt::ItemIsEnabled);
                     list->item(i)->setCheckState(Qt::Checked);
                 }
 

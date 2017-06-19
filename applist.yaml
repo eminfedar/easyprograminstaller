@@ -8,7 +8,7 @@ Developers:
     - unzip androidstudio.zip -d /usr/local
     - cd /usr/local/android-studio/bin
     - echo '--CHECKDOWNLOADFOLDER--'
-    - ./studio.sh
+    - (./studio.sh &> /dev/null &)
     - "[ -d /usr/local/android-studio ] && echo '+'"
   Arduino IDE:
     - "sudo apt install arduino arduino-core -y"
@@ -25,7 +25,7 @@ Developers:
     - tar xf eclipse.tar.gz
     - cd eclipse-installer
     - echo '--CHECKDOWNLOADFOLDER--'
-    - (./eclipse-inst &)
+    - (./eclipse-inst &> /dev/null &)
     - "[ -d /home/$USER/.config/easyprograminstaller/downloaded/eclipse-installer ] && echo 'exists'"
   Java Development Kit:
     - sudo apt install default-jdk -y
@@ -116,10 +116,9 @@ General:
     - cd /home/$USER/.config/easyprograminstaller/downloaded
     - wget -O telegram.tar.xz "https://telegram.org/dl/desktop/linux" -q --no-check-certificate --show-progress --progress=dot
     - tar xf telegram.tar.xz
-    - cd Telegram
-    - ./Telegram
+    - mv Telegram /opt/Telegram
     - echo '--CHECKDOWNLOADFOLDER--'
-    - "[ -d /home/$USER/.config/easyprograminstaller/Telegram ] && echo '+'"
+    - "[ -d /opt/Telegram ] && echo '+'"
   VirtualBox:
     - sudo apt install virtualbox -y
     - which virtualbox
