@@ -19,9 +19,9 @@ HEADERS  += mainwindow.h
 
 FORMS    += mainwindow.ui
 
-CONFIG  += c++11
-
 RESOURCES += \
     qtresource.qrc
+
+QMAKE_CXXFLAGS += -std=c++11
 
 LIBS += -lyaml-cpp

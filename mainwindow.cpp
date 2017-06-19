@@ -12,12 +12,22 @@ void MainWindow::addAppsToList(){
     for (int i = 0; i < listArr->count(); ++i)
         listArr->at(i)->clear();
 
-    const QString path = "/home/" + username + "/.config/easyprograminstaller/applist.yaml";
-    YAML::Node applist = YAML::LoadFile(path.toStdString());
+    YAML::Node applist;
+    try{
+        QString path = "/home/" + username + "/.config/easyprograminstaller/applist.yaml";
+        applist = YAML::LoadFile(path.toStdString());
+
+    }catch(YAML::BadFile badfile){
+        terminal->start((QString)("/bin/sh -c \"wget -O /home/" + username + "/.config/easyprograminstaller/applist.yaml 'https://github.com/eminfedar/easyprograminstaller/raw/master/applist.yaml' -q --no-check-certificate\""));
+        terminal->waitForFinished();
+        terminal->close();
+    }
+
 
     for(YAML::const_iterator categories = applist.begin(); categories != applist.end(); ++categories){
         std::string category_name = categories->first.as<std::string>();
         YAML::Node category = categories->second.as<YAML::Node>();
+
 
         for (YAML::const_iterator app = category.begin(); app != category.end(); ++app) {
             std::string app_name = app->first.as<std::string>();
