@@ -11,17 +11,18 @@ It has been written in C++ & Qt-5, so you can compile the program yourself if yo
 
 ### You can compile from source code:
 
-1. Compile [yaml-cpp](https://github.com/jbeder/yaml-cpp) first:
+1. Compile [yaml-cpp](https://github.com/jbeder/yaml-cpp) _(Recommended 0.5.1)_:
 ```
-git clone https://github.com/jbeder/yaml-cpp.git
+git clone --branch release-0.5.1 --single-branch https://github.com/jbeder/yaml-cpp
 cd yaml-cpp
 mkdir build
 cd build
-cmake ..
 
+cmake ..
 make
 sudo make install
 ```
-2. Open ".pro" file with QT-Creator
+2. Do not forget to copy 'yaml-cpp-clonedfolderfromgithub/include/yaml-cpp' folder to project folder (same with .pro and .cpp's path)
+3. Open ".pro" file with QT-Creator
 
 Done.
