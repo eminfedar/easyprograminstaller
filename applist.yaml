@@ -122,9 +122,8 @@ General:
     - sudo apt install virtualbox -y
     - which virtualbox
   Vivaldi:
-    - echo "echo deb http://repo.vivaldi.com/stable/deb/ stable main > /etc/apt/sources.list.d/vivaldi.list" | sudo sh
-    - wget "http://repo.vivaldi.com/stable/linux_signing_key.pub" -q --no-check-certificate --show-progress --progress=dot | sudo apt-key add -
     - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1397BC53640DB551
+    - echo deb http://repo.vivaldi.com/stable/deb/ stable main | sudo tee /etc/apt/sources.list.d/vivaldi.list
     - sudo apt-get update
     - sudo apt-get install vivaldi-stable -y
     - which vivaldi
