@@ -125,7 +125,7 @@ General:
     - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1397BC53640DB551
     - echo deb http://repo.vivaldi.com/stable/deb/ stable main | sudo tee /etc/apt/sources.list.d/vivaldi.list
     - sudo apt-get update
-    - sudo apt-get install vivaldi-stable -y
+    - sudo apt install vivaldi-stable -y --allow-unauthenticated
     - which vivaldi
   VLC Media Player:
     - sudo apt install vlc -y
