@@ -123,10 +123,11 @@ General:
     - sudo apt install virtualbox -y
     - which virtualbox
   Vivaldi:
-    - cd /home/$USER/.config/easyprograminstaller/downloaded
-    - wget -O vivaldi.deb "https://downloads.vivaldi.com/stable/vivaldi-stable_1.9.818.50-1_amd64.deb" -q --no-check-certificate --show-progress --progress=dot
-    - sudo dpkg -i vivaldi.deb
-    - echo '--CHECKDOWNLOADFOLDER--'
+    - echo "echo deb http://repo.vivaldi.com/stable/deb/ stable main > /etc/apt/sources.list.d/vivaldi.list" | sudo sh
+    - wget "http://repo.vivaldi.com/stable/linux_signing_key.pub" -q --no-check-certificate --show-progress --progress=dot | sudo apt-key add -
+    - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1397BC53640DB551
+    - sudo apt-get update
+    - sudo apt-get install vivaldi-stable -y
     - which vivaldi
   VLC Media Player:
     - sudo apt install vlc -y
