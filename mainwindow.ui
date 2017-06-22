@@ -73,7 +73,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="sync">
+       <widget class="QPushButton" name="btn_sync">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
           <horstretch>1</horstretch>
@@ -93,7 +93,7 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="qtresource.qrc">
           <normaloff>:/img/sync.png</normaloff>:/img/sync.png</iconset>
         </property>
        </widget>
@@ -258,6 +258,8 @@ padding:3px;</string>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="qtresource.qrc"/>
+ </resources>
  <connections/>
 </ui>

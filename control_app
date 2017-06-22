@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Easy Program Installer
+Version=1.0
+Exec=easyprograminstaller
+Comment=Install Programs Easily
+Icon=epiicon.png
+Type=Application
+Terminal=false
+StartupNotify=true
+Encoding=UTF-8

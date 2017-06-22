@@ -8,9 +8,11 @@
 #include <QDateTime>
 
 void MainWindow::addAppsToList(){
-
+    // Clear
+    AppList.clear();
     for (int i = 0; i < listArr->count(); ++i)
         listArr->at(i)->clear();
+
 
     YAML::Node applist;
     try{
@@ -160,6 +162,10 @@ void MainWindow::installQueue(){
     }
 
     ui->btn_install->setEnabled(false);
+    for(int i = 0; i < listArr->count(); i++){
+        listArr->at(i)->setEnabled(false);
+    }
+    ui->btn_sync->setEnabled(false);
 
     terminal->start((QString)("pkexec /bin/sh -c \"" + appCommand.join(" && ") + "\""));
 
@@ -184,7 +190,7 @@ void MainWindow::processOutput(){
     QString preparedText = terminalOutput.left(70);
     preparedText.replace("\n","");
     ui->txt_output->setText(preparedText);
-    //qDebug() << terminalOutput;
+    qDebug() << terminalOutput;
     //qDebug() << terminalOutputErr;
 
     const QString terminalOutputConst = terminalOutput;
@@ -196,6 +202,10 @@ void MainWindow::processOutput(){
         checkIfProgramsExists();
         installQueue();
         ui->btn_install->setEnabled(true);
+        for(int i = 0; i < listArr->count(); i++){
+            listArr->at(i)->setEnabled(true);
+        }
+        ui->btn_sync->setEnabled(true);
         ui->centralWidget->repaint();
     }
     // Check Download Folder
@@ -234,8 +244,7 @@ void MainWindow::on_btn_install_clicked()
         installQueue();
 }
 
-void MainWindow::on_sync_clicked()
-{
+void MainWindow::on_btn_sync_clicked(){
     for (int i = 0; i < listArr->count(); ++i) {
         listArr->at(i)->clear();
         listArr->at(i)->addItem("Please Wait. Downloading...");
@@ -243,7 +252,7 @@ void MainWindow::on_sync_clicked()
     }
     ui->btn_install->repaint(); // This is just for refreshing the last list. Because it is not refreshing the last one. So we make this last one.
 
-    terminal->start((QString)("/bin/sh -c \"mv ~/.config/easyprograminstaller/applist.yaml ~/.config/easyprograminstaller/applist.yaml.old; wget -O /home/" + username + "/.config/easyprograminstaller/applist.yaml 'https://github.com/eminfedar/easyprograminstaller/raw/master/applist.yaml' -q --no-check-certificate\""));
+    terminal->start((QString)("/bin/sh -c \"mv ~/.config/easyprograminstaller/applist.yaml ~/.config/easyprograminstaller/applist.yaml.old; wget -O /home/" + username + "/.config/easyprograminstaller/applist.yaml 'https://raw.githubusercontent.com/eminfedar/easyprograminstaller/master/applist.yaml' -q --no-check-certificate\""));
     terminal->waitForFinished();
     terminal->close();
 

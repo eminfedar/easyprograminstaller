@@ -21,8 +21,7 @@ public:
 private slots:
     void processOutput();
     void on_btn_install_clicked();
-
-    void on_sync_clicked();
+    void on_btn_sync_clicked();
 
 private:
     Ui::MainWindow *ui;
