@@ -14,11 +14,10 @@ Developers:
     - "sudo apt install arduino arduino-core -y"
     - which arduino
   Atom Text Editor:
-    - cd /home/$USER/.config/easyprograminstaller/downloaded
-    - wget -O atom.deb "https://atom.io/download/deb" -q --no-check-certificate --show-progress --progress=dot
-    - sudo dpkg -i atom.deb
-    - echo '--CHECKDOWNLOADFOLDER--'
-    - dpkg -l | grep -o 'ii  atom'
+    - sudo add-apt-repository ppa:webupd8team/atom
+    - sudo apt update
+    - sudo apt install atom -y
+    - which atom
   Eclipse Installer:
     - cd /home/$USER/.config/easyprograminstaller/downloaded
     - wget -O eclipse.tar.gz "http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse/oomph/epp/neon/R3/eclipse-inst-linux64.tar.gz" -q --no-check-certificate --show-progress --progress=dot
