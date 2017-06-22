@@ -179,3 +179,8 @@ System Management:
   GParted:
     - sudo apt install gparted -y
     - which gparted
+  OS-Uninstaller:
+    - sudo add-apt-repository ppa:yannubuntu/boot-repair
+    - sudo apt-get update
+    - sudo apt-get install -y os-uninstaller
+    - which os-uninstaller
