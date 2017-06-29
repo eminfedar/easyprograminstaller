@@ -108,7 +108,6 @@ General:
     - cd /home/$USER/.config/easyprograminstaller/downloaded
     - wget -O teamviewer.deb "https://download.teamviewer.com/download/teamviewer_i386.deb" -q --no-check-certificate --show-progress --progress=dot
     - sudo dpkg -i teamviewer.deb
-    - sudo apt-get install -f
     - echo '--CHECKDOWNLOADFOLDER--'
     - which teamviewer
   Telegram Desktop:
