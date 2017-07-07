@@ -5,11 +5,12 @@ It has been written in C++ & Qt-5, so you can compile the program yourself if yo
 
 # How to install EPI?
 ### You can download .deb file from here: (Easy & Fast)
-* [Download .deb file](https://github.com/eminfedar/easyprograminstaller/releases/download/v1.4.1/easyprograminstaller_1.4.1_amd64.deb)
-* And install: `sudo dpkg -i easyprograminstaller_1.4.1_amd64.deb`
-* Then run it from terminal : `easyprograminstaller`
+* [Download .deb file](https://github.com/eminfedar/easyprograminstaller/releases/download/v1.4.2/easyprograminstaller_1.4.2_amd64.deb)
+* And install: `sudo dpkg -i easyprograminstaller_1.4.2_amd64.deb`
+* Then run it: `easyprograminstaller`
 
-### You can compile from source code:
+
+### Or if you are a developer you can compile from source code:
 
 1. Compile [yaml-cpp](https://github.com/jbeder/yaml-cpp) _(Recommended 0.5.1)_:
 ```
