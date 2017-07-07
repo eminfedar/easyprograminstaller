@@ -3,7 +3,7 @@
 #include <QtDebug>
 #include <QProcess>
 #include <QMessageBox>
-#include "yaml-cpp/yaml.h"
+#include <3rdparty/yaml-cpp/include/yaml-cpp/yaml.h>
 #include <string>
 #include <QDateTime>
 
@@ -190,7 +190,7 @@ void MainWindow::processOutput(){
     QString preparedText = terminalOutput.left(70);
     preparedText.replace("\n","");
     ui->txt_output->setText(preparedText);
-    qDebug() << terminalOutput;
+    //qDebug() << terminalOutput;
     //qDebug() << terminalOutputErr;
 
     const QString terminalOutputConst = terminalOutput;

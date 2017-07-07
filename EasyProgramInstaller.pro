@@ -19,9 +19,11 @@ HEADERS  += mainwindow.h
 
 FORMS    += mainwindow.ui
 
+INCLUDEPATH += 3rdparty/yaml-cpp/include
+
 RESOURCES += \
     qtresource.qrc
 
 QMAKE_CXXFLAGS += -std=c++11
 
-LIBS += -lyaml-cpp
+LIBS += -L"3rdparty/yaml-cpp/lib" -lyaml-cpp
