@@ -3,7 +3,7 @@
 #include <QtDebug>
 #include <QProcess>
 #include <QMessageBox>
-#include <3rdparty/yaml-cpp/include/yaml-cpp/yaml.h>
+#include "yaml-cpp/yaml.h"
 #include <string>
 #include <QDateTime>
 
