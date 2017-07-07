@@ -5,8 +5,8 @@ It has been written in C++ & Qt-5, so you can compile the program yourself if yo
 
 # How to install EPI?
 ### You can download .deb file from here: (Easy & Fast)
-* [Download .deb file](https://github.com/eminfedar/easyprograminstaller/releases/download/v1.4.2/easyprograminstaller_1.4.2_amd64.deb)
-* And install: `sudo dpkg -i easyprograminstaller_1.4.2_amd64.deb`
+* [Download .deb file](https://github.com/eminfedar/easyprograminstaller/releases/download/v1.4.3/easyprograminstaller_1.4.3_amd64.deb)
+* And install: `sudo dpkg -i easyprograminstaller_1.4.3_amd64.deb`
 * Then run it: `easyprograminstaller`
 
 
