@@ -3,9 +3,11 @@
 #include <QtDebug>
 #include <QProcess>
 #include <QMessageBox>
-#include "yaml-cpp/yaml.h"
 #include <string>
 #include <QDateTime>
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 void MainWindow::addAppsToList(){
     // Clear
@@ -13,44 +15,40 @@ void MainWindow::addAppsToList(){
     for (int i = 0; i < listArr->count(); ++i)
         listArr->at(i)->clear();
 
-
-    YAML::Node applist;
-    try{
-        QString path = "/home/" + username + "/.config/easyprograminstaller/applist.yaml";
-        applist = YAML::LoadFile(path.toStdString());
-
-    }catch(YAML::BadFile badfile){
-        terminal->start((QString)("/bin/sh -c \"wget -O /home/" + username + "/.config/easyprograminstaller/applist.yaml 'https://github.com/eminfedar/easyprograminstaller/raw/master/applist.yaml' -q --no-check-certificate\""));
+    QString path = "/home/" + username + "/.config/easyprograminstaller/applist.json";
+    QFile applistFile(path);
+    if( !applistFile.open(QFile::ReadOnly) ){
+        terminal->start((QString)("/bin/sh -c \"wget -O /home/" + username + "/.config/easyprograminstaller/applist.yaml 'https://github.com/eminfedar/easyprograminstaller/raw/master/applist.json' -q --no-check-certificate\""));
         terminal->waitForFinished();
         terminal->close();
+
+        applistFile.open(QFile::ReadOnly);
     }
 
+    QByteArray applistData = applistFile.readAll();
+    QJsonDocument applistJSONDoc( QJsonDocument::fromJson(applistData) );
+    QJsonObject applistJSONObj = applistJSONDoc.object();
 
-    for(YAML::const_iterator categories = applist.begin(); categories != applist.end(); ++categories){
-        std::string category_name = categories->first.as<std::string>();
-        YAML::Node category = categories->second.as<YAML::Node>();
+    for (const QString category : (QStringList) applistJSONObj.keys()) {
+        for (const QString appName : (QStringList) ((QJsonValueRef)applistJSONObj[category]).toObject().keys() ) {
 
-
-        for (YAML::const_iterator app = category.begin(); app != category.end(); ++app) {
-            std::string app_name = app->first.as<std::string>();
-            YAML::Node commandlist = app->second.as<YAML::Node>();
-
-            if(category_name == "Developers"){
-                ui->list_developers->addItem((QString)app_name.c_str());
-            }else if(category_name == "General"){
-                ui->list_general->addItem((QString)app_name.c_str());
-            }else if(category_name == "Tools"){
-                ui->list_tools->addItem((QString)app_name.c_str());
-            }else if(category_name == "System Management"){
-                ui->list_system->addItem((QString)app_name.c_str());
+            if(category == "Developers"){
+                ui->list_developers->addItem(appName);
+            }else if(category == "General"){
+                ui->list_general->addItem(appName);
+            }else if(category == "Tools"){
+                ui->list_tools->addItem(appName);
+            }else if(category == "System Management"){
+                ui->list_system->addItem(appName);
             }
 
-            for (YAML::const_iterator commands = commandlist.begin(); commands != commandlist.end(); ++commands) {
-                std::string command = commands->as<std::string>();
-                QString appName = (QString)app_name.c_str();
-
-                AppList[appName].append(command.c_str());
+            QJsonObject categoryObj = ((QJsonValueRef)applistJSONObj[category]).toObject();
+            QJsonValue appCommands = (QJsonValueRef)(categoryObj[appName]);
+            QStringList appCommandsArr = appCommands.toVariant().toStringList();
+            for(int i=0; i < appCommandsArr.size(); i++){
+                AppList[appName].append(appCommandsArr[i]);
             }
+
         }
     }
 
@@ -90,7 +88,7 @@ void MainWindow::checkIfProgramsExists(){
                 //qDebug() << appName << " : " << terminalOutput << " - " << terminalOutput.length();
                 if(terminalOutput.length() > 0 && terminalOutput != "--- |FINISHED| ---\n"){
                     list->item(i)->setForeground(QColor(0,150,0));
-                    list->item(i)->setFlags(!Qt::ItemIsEnabled);
+                    list->item(i)->setFlags(list->item(i)->flags().setFlag(Qt::ItemIsEnabled, false));
                     list->item(i)->setCheckState(Qt::Checked);
                 }
 
@@ -222,7 +220,6 @@ void MainWindow::processOutput(){
 
 void MainWindow::on_btn_install_clicked()
 {
-
     // Cache Lists
     appsWillInstall->clear();
     QListWidget * list;
@@ -230,7 +227,7 @@ void MainWindow::on_btn_install_clicked()
         list = listArr->at(a);
 
         for (int i = 0; i < list->count(); ++i) {
-            if(list->item(i)->checkState() && list->item(i)->flags() != Qt::NoItemFlags){
+            if(list->item(i)->checkState() && list->item(i)->flags().testFlag(Qt::ItemIsEnabled)){
                 appsWillInstall->append(list->item(i)->text());
             }
         }

@@ -1,0 +1,222 @@
+{
+  "Developers": {
+    "Android Studio": [
+      "sudo apt install unzip libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386 -y",
+      "cd /home/$USER/.config/easyprograminstaller/downloaded",
+      "wget -O androidstudio.zip \"https://dl.google.com/dl/android/studio/ide-zips/3.3.2.0/android-studio-ide-182.5314842-linux.zip\" -q --no-check-certificate --show-progress --progress=dot",
+      "unzip androidstudio.zip -d /usr/local",
+      "cd /usr/local/android-studio/bin",
+      "echo '--CHECKDOWNLOADFOLDER--'",
+      "(./studio.sh &> /dev/null &)",
+      "[ -d /usr/local/android-studio ] && echo '+'"
+    ],
+    "Arduino IDE": [
+      "sudo apt install arduino arduino-core -y",
+      "which arduino"
+    ],
+    "Atom Text Editor": [
+      "sudo apt install atom -y",
+      "which atom"
+    ],
+    "Eclipse Installer": [
+      "cd /home/$USER/.config/easyprograminstaller/downloaded",
+      "wget -O eclipse.tar.gz \"http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse/oomph/epp/neon/R3/eclipse-inst-linux64.tar.gz\" -q --no-check-certificate --show-progress --progress=dot",
+      "tar xf eclipse.tar.gz",
+      "cd eclipse-installer",
+      "echo '--CHECKDOWNLOADFOLDER--'",
+      "(./eclipse-inst &> /dev/null &)",
+      "[ -d /home/$USER/.config/easyprograminstaller/downloaded/eclipse-installer ] && echo 'exists'"
+    ],
+    "Java Development Kit": [
+      "sudo apt install default-jdk -y",
+      "dpkg -l | grep -o 'ii  default-jdk'"
+    ],
+    "Java Runtime Environment": [
+      "sudo apt install default-jre -y",
+      "dpkg -l | grep -o 'ii  default-jre'"
+    ],
+    "Mono Develop": [
+      "sudo apt install mono-devel -y",
+      "dpkg -l | grep -o 'ii  mono-devel'"
+    ],
+    "NetBeans IDE": [
+      "sudo apt install netbeans -y",
+      "which netbeans"
+    ],
+    "OpenJDK 8": [
+      "sudo apt install openjdk-8-jdk -y",
+      "dpkg -l | grep -o 'ii  openjdk-8-jdk'"
+    ],
+    "OpenJRE 8": [
+      "sudo apt install openjdk-8-jre -y",
+      "dpkg -l | grep -o 'ii  openjdk-8-jre'"
+    ],
+    "PyCharm": [
+      "sudo add-apt-repository ppa:mystic-mirage/pycharm",
+      "sudo apt update",
+      "sudo apt install pycharm-community -y",
+      "which pycharm-community"
+    ],
+    "Qt 5": [
+      "sudo apt install qt5-default -y",
+      "dpkg -l | grep -o 'ii  qt5-default'"
+    ],
+    "Qt Creator": [
+      "sudo apt install qtcreator -y",
+      "which qtcreator"
+    ],
+    "Sublime Text": [
+      "cd /home/$USER/.config/easyprograminstaller/downloaded",
+      "wget -O sublime.deb \"https://download.sublimetext.com/sublime-text_build-3126_amd64.deb\" -q --no-check-certificate --show-progress --progress=dot",
+      "sudo dpkg -i sublime.deb",
+      "echo '--CHECKDOWNLOADFOLDER--'",
+      "[ -d /opt/sublime_text/ ] && echo '+'"
+    ],
+    "Vim": [
+      "sudo apt install vim -y",
+      "which vim"
+    ],
+    "Visual Studio Code": [
+      "cd /home/$USER/.config/easyprograminstaller/downloaded",
+      "wget -O vscode.deb \"https://go.microsoft.com/fwlink/?LinkID=760868\" -q --no-check-certificate --show-progress --progress=dot",
+      "sudo dpkg -i vscode.deb",
+      "echo '--CHECKDOWNLOADFOLDER--'",
+      "which code"
+    ]
+  },
+  "General": {
+    "GIMP Image Editor": [
+      "sudo apt install gimp -y",
+      "which gimp"
+    ],
+    "Google Chrome": [
+      "cd /home/$USER/.config/easyprograminstaller/downloaded",
+      "wget -O googlechrome.deb \"https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb\" -q --no-check-certificate --show-progress --progress=dot",
+      "sudo dpkg -i googlechrome.deb",
+      "echo '--CHECKDOWNLOADFOLDER--'",
+      "which google-chrome"
+    ],
+    "Mozilla Firefox": [
+      "sudo apt install firefox -y",
+      "which firefox"
+    ],
+    "Opera": [
+      "sudo sh -c 'echo \"deb http://deb.opera.com/opera/ stable non-free\" >> /etc/apt/sources.list.d/opera.list'",
+      "wget http://deb.opera.com/archive.key -q -O - | sudo apt-key add -",
+      "sudo apt update",
+      "sudo apt install opera -y",
+      "dpkg -l | grep -o 'ii  opera'"
+    ],
+    "Pitivi Video Editor": [
+      "sudo apt install pitivi -y",
+      "which pitivi"
+    ],
+    "Skype": [
+      "sudo apt install skype -y",
+      "which skype"
+    ],
+    "Spotify": [
+      "sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886",
+      "echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list",
+      "sudo apt update",
+      "sudo apt install spotify-client -y",
+      "which spotify"
+    ],
+    "TeamViewer": [
+      "cd /home/$USER/.config/easyprograminstaller/downloaded",
+      "wget -O teamviewer.deb \"https://download.teamviewer.com/download/linux/teamviewer_amd64.deb\" -q --no-check-certificate --show-progress --progress=dot",
+      "sudo dpkg -i teamviewer.deb",
+      "echo '--CHECKDOWNLOADFOLDER--'",
+      "which teamviewer"
+    ],
+    "Telegram Desktop": [
+      "cd /home/$USER/.config/easyprograminstaller/downloaded",
+      "wget -O telegram.tar.xz \"https://telegram.org/dl/desktop/linux\" -q --no-check-certificate --show-progress --progress=dot",
+      "tar xf telegram.tar.xz",
+      "mv Telegram /opt/Telegram",
+      "echo '--CHECKDOWNLOADFOLDER--'",
+      "[ -d /opt/Telegram ] && echo '+'"
+    ],
+    "VirtualBox": [
+      "sudo apt install virtualbox -y",
+      "which virtualbox"
+    ],
+    "Vivaldi": [
+      "sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1397BC53640DB551",
+      "echo deb http://repo.vivaldi.com/stable/deb/ stable main | sudo tee /etc/apt/sources.list.d/vivaldi.list",
+      "sudo apt-get update",
+      "sudo apt-get install vivaldi-stable -y --allow-unauthenticated",
+      "which vivaldi"
+    ],
+    "VLC Media Player": [
+      "sudo apt install vlc -y",
+      "which vlc"
+    ]
+  },
+  "Tools": {
+    "Cairo Dock": [
+      "sudo apt install cairo-dock -y",
+      "dpkg -l | grep -o 'ii  cairo-dock'"
+    ],
+    "Conky": [
+      "sudo apt install conky-all -y",
+      "which conky"
+    ],
+    "dconf Editor": [
+      "sudo apt install dconf-editor -y",
+      "which dconf-editor"
+    ],
+    "Docky": [
+      "sudo apt install docky -y",
+      "which docky"
+    ],
+    "FileZilla": [
+      "sudo apt install filezilla -y",
+      "which filezilla"
+    ],
+    "Gnome Tweak Tool": [
+      "sudo apt install gnome-tweak-tool -y",
+      "which gnome-tweak-tool"
+    ],
+    "Plank": [
+      "sudo apt install plank -y",
+      "which plank"
+    ],
+    "RecordMyDesktop": [
+      "sudo apt install recordmydesktop -y",
+      "which recordmydesktop"
+    ],
+    "Unity Tweak Tool": [
+      "sudo apt install unity-tweak-tool -y",
+      "which unity-tweak-tool"
+    ],
+    "Wine": [
+      "sudo dpkg --add-architecture i386",
+      "wget -nc https://dl.winehq.org/wine-builds/Release.key",
+      "sudo apt-key add Release.key",
+      "sudo apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/",
+      "deb https://dl.winehq.org/wine-builds/debian/ jessie main",
+      "sudo apt update",
+      "sudo apt install --install-recommends winehq-devel -y",
+      "[ -d /opt/wine-devel/bin ] && echo '+'"
+    ]
+  },
+  "System Management": {
+    "Boot Repair": [
+      "sudo add-apt-repository ppa:yannubuntu/boot-repair",
+      "sudo apt update",
+      "sudo apt install boot-repair -y",
+      "which boot-repair"
+    ],
+    "GParted": [
+      "sudo apt install gparted -y",
+      "which gparted"
+    ],
+    "OS-Uninstaller": [
+      "sudo add-apt-repository ppa:yannubuntu/boot-repair",
+      "sudo apt-get update",
+      "sudo apt-get install -y os-uninstaller",
+      "which os-uninstaller"
+    ]
+  }
+}

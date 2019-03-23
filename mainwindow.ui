@@ -14,7 +14,7 @@
    <string>Easy Program Installer</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="qtresource.qrc">
     <normaloff>:/img/epiicon.png</normaloff>:/img/epiicon.png</iconset>
   </property>
   <property name="styleSheet">
@@ -37,7 +37,7 @@
         </property>
         <property name="sizeHint" stdset="0">
          <size>
-          <width>44</width>
+          <width>40</width>
           <height>20</height>
          </size>
         </property>
