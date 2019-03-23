@@ -2,8 +2,8 @@
 Name=Easy Program Installer
 Version=1.5
 Exec=easyprograminstaller
-Comment=Install Programs Easily
-Icon=epiicon.png
+Comment=Install multiple programs easily
+Icon=epiicon
 Type=Application
 Terminal=false
 StartupNotify=true

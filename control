@@ -4,4 +4,5 @@ Maintainer: Emin Fedar <eminfedar@gmail.com>
 Section: admin
 Architecture: amd64
 Priority: optional
+Depends: libqt5widgets5, libqt5core5a, libqt5gui5
 Description: This program makes easy to install your favorite programs just by one click
